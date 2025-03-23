@@ -57,7 +57,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->phone = $request->phone;
         $user->address = $request->address;
-        $user->role = $request->role; 
+        $user->role = $request->role;
         $user->img = $request->img;
         $user->password = bcrypt($request->password);
 
@@ -70,7 +70,7 @@ class UserController extends Controller
         ], 201);
     }
 
-  
+
     public function show(string $id)
     {
         $user = User::find($id);
@@ -105,7 +105,7 @@ class UserController extends Controller
         ], 200);
     }
 
-   
+
     public function update(Request $request, string $id)
     {
         $user = User::find($id);
@@ -122,8 +122,8 @@ class UserController extends Controller
             'phone' => 'sometimes|required|string|max:10',
             'address' => 'sometimes|required|string',
             'img' => 'sometimes|required|string',
-            'role' => 'sometimes|required|in:admin,user', 
-            'password'=>'required|min:8'
+            'role' => 'sometimes|required|in:admin,user',
+            // 'password'=>'required|min:8'
         ]);
 
         if ($validator->fails()) {
@@ -139,7 +139,7 @@ class UserController extends Controller
         $user->address = $request->input('address', $user->address);
         $user->role = $request->input('role', $user->role);
         $user->img = $request->input('img', $user->img);
-        $user->password = bcrypt($request->password);
+        // $user->password = bcrypt($request->password);
 
         $user->save();
 
